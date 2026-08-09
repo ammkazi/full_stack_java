@@ -45,6 +45,8 @@ class SavingAccount extends Account {
     }
 }
 
+
+
 public class Inheritance2 {
     public static void main(String[] args) {
         SavingAccount obj1 = new SavingAccount("Aiman", 123, 11000, 2.5);
