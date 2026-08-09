@@ -52,6 +52,49 @@ class SavingAccount extends Account {
 
 }
 
+class CurrentAccount extends Account {
+
+    protected double overdraftLimit;
+
+    public CurrentAccount(String holdersName,
+            double balance,
+            double overdraftLimit) {
+
+        super(holdersName, balance);
+        this.overdraftLimit = overdraftLimit;
+    }
+
+    @Override
+    public void withdraw(double amount) {
+
+        if (amount <= 0) {
+            System.out.println("Invalid withdrawal amount.");
+        } else if ((balance - amount) >= -overdraftLimit) {
+
+            balance = balance - amount;
+
+            System.out.println("Withdrawal successful.");
+            System.out.println("New Balance is : " + balance);
+        } else {
+            System.out.println("Withdrawal failed.");
+            System.out.println("Overdraft limit exceeded.");
+        }
+    }
+
+    @Override
+    public void deposit(double amount) {
+
+        if (amount <= 0) {
+            System.out.println("Invalid deposit amount.");
+        } else {
+            balance = balance + amount;
+
+            System.out.println("Deposit successful.");
+            System.out.println("New Balance is : " + balance);
+        }
+    }
+}
+
 public class AbstractClass {
     public static void main(String[] args) {
         // reference of the base class - object of the derived class
@@ -67,5 +110,11 @@ public class AbstractClass {
         System.out.println(obj2.toString());
         obj2.withdraw(50000);
 
+        Account obj3 = new CurrentAccount("Visual Labs", 100000, 10000);
+        obj3.deposit(1000);
+        obj3.withdraw(15000);
+        obj3.withdraw(150000);
+
     }
+
 }
