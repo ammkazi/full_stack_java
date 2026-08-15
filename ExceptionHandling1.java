@@ -3,11 +3,11 @@ import java.util.Scanner;
 
 public class ExceptionHandling1 {
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
         try {
             int n1, n2;
             int result;
 
-            Scanner sc = new Scanner(System.in);
             System.out.println("Enter n1 ");
             n1 = sc.nextInt();
 
@@ -22,6 +22,9 @@ public class ExceptionHandling1 {
             System.out.println("Denominator should a positive non-zero number...");
         } catch (Exception e) {
             System.out.println("OOPS .. Something went wrong...");
+        } finally {
+            sc.close();
+            System.out.println("End of code..");
         }
     }
 }
